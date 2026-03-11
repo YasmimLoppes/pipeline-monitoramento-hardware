@@ -1,48 +1,57 @@
 # pipeline-monitoramento-hardware
 Pipeline de Engenharia de Dados para monitoramento de preços de hardware (GPUs e CPUs) com Python, AWS S3 e SQL.
 
-# 🚀 Pipeline de Monitoramento de Preços: Hardware Tech
+# 🚀 Hardware de monitoramento de pipeline
 
-Este projeto demonstra um fluxo de *Engenharia de Dados* para monitorar a variação de preços de componentes de hardware (GPUs e CPUs). O objetivo é extrair dados via Web Scraping, tratá-los com Python e organizá-los em uma estrutura de Data Lake simplificada.
+Pipeline de Engenharia de Dados para monitoramento de preços de hardware (GPUs e CPUs) com Python e SQL.
+
+## 🎯 Objetivo do Projeto
+Este projeto demonstra um fluxo de Engenharia de Dados para monitorar a variação de preços de componentes de hardware. O objetivo é extrair dados via Web Scraping, tratá-los com Python e organizá-los em uma estrutura de Data Lake simplificada.
 
 ---
 
-## 🛠 Tecnologias Utilizadas
-* *Linguagem:* Python (Pandas, BeautifulSoup/Selenium)
-* *Armazenamento:* AWS S3 (Camadas Raw e Trusted)
-* *Banco de Dados:* MySQL para queries analíticas
+## 🛠️ Tecnologias Utilizadas
+
+* *Linguagem:* Python (Pandas, Re, Logging)
+* *Armazenamento:* Estrutura de pastas (Bronze/Silver/Gold) simulando AWS S3
+* *Banco de Dados:* SQL para queries analíticas
 * *Documentação:* Markdown e Excalidraw para arquitetura
 
 ---
 
 ## 📐 Arquitetura do Projeto
-> [!TIP]
-> *Fluxo de Dados:* Python Scraper ➡️ AWS S3 (Raw) ➡️ Pandas Transformation ➡️ SQL Database (Trusted).
+
+> *Fluxo de Dados:* Python Scraper ➡️ Camada Bronze (Raw) ➡️ Pandas Transformação ➡️ Camada Silver (Trusted) ➡️ SQL Analytics
 
 ![Arquitetura do Projeto](docs/readme.png)
 
 ---
 
-## ⚙️ Destaques Técnicos
-* *Data Cleaning:* Tratamento de valores ausentes e normalização de strings (R$ -> Float).
-* *Eficiência:* Estrutura de pastas pensada para o crescimento do volume de dados.
-* *Escalabilidade:* Pronto para ser migrado para serviços de nuvem (AWS Glue).
+## 💻 Demonstração Técnica (Python)
+Abaixo, um trecho do pipeline que desenvolvi utilizando Programação Orientada a Objetos e a biblioteca Pandas para limpeza dos dados:
 
----
+```python
+def transform_data(self):
+    df = pd.DataFrame(self.raw_data)
+    
+    # Limpeza de Preço com Regex (R$ 1.500,00 -> 1500.00)
+    df['price_numeric'] = df['price'].apply(lambda x: float(re.sub(r'[R\$\s\.]', '', x).replace(',', '.')))
+    
+    # Categorização Automática de Hardware
+    df['category'] = df['item'].apply(lambda x: 'GPU' if 'GPU' in x else 'CPU')
+    
+    return df
 
-## 📊 Demonstração (SQL Analytics)
-Exemplo de query utilizada para identificar a variação de preços:
-
-```sql
-SELECT 
-    produto_nome, 
-    MIN(preco) AS menor_preco, 
+SELECT
+    produto_nome,
+    MIN(preco) AS menor_preco,
     MAX(preco) AS maior_preco,
-    ((MAX(preco) - MIN(preco)) / MAX(preco)) * 100 AS variacao_percentual
+    ROUND(((MAX(preco) - MIN(preco)) / MAX(preco)) * 100, 2) AS variacao_percentual
 FROM hardware_prices
 GROUP BY produto_nome
 ORDER BY variacao_percentual DESC;
 
-📬 Contato
+📫 Contato
 * LinkedIn: yasmim-loppes
 * Email: yasmim_loppes@icloud.com
+* GitHub: YasmimLoppes
