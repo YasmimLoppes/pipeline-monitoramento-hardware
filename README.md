@@ -52,6 +52,6 @@ GROUP BY produto_nome
 ORDER BY variacao_percentual DESC;
 
 📫 Contato
-* LinkedIn: yasmim-loppes
-* Email: yasmim_loppes@icloud.com
-* GitHub: YasmimLoppes
+  LinkedIn: yasmim-loppes
+  Email: yasmim_loppes@icloud.com
+  GitHub: YasmimLoppes
