@@ -54,6 +54,6 @@ ORDER BY variacao_percentual DESC;
 
 ```
 📫 Contato
-  LinkedIn: yasmim-loppes
+  LinkedIn: www.linkedin.com/in/yasmim-loppes/  
   Email: yasmim_loppes@icloud.com
-  GitHub: YasmimLoppes
+  GitHub: github.com/yasmimloppes    
