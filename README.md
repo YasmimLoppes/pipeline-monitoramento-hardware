@@ -19,7 +19,7 @@ Este projeto demonstra um fluxo de *Engenharia de Dados* para monitorar a varia�
 > [!TIP]
 > *Fluxo de Dados:* Python Scraper ➡️ AWS S3 (Raw) ➡️ Pandas Transformation ➡️ SQL Database (Trusted).
 
-(Suba o print do seu desenho do Excalidraw aqui futuramente)
+![Arquitetura do Projeto](docs/readme.png)
 
 ---
 
