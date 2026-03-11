@@ -42,6 +42,7 @@ def transform_data(self):
     
     return df
 
+```sql
 SELECT
     produto_nome,
     MIN(preco) AS menor_preco,
@@ -51,6 +52,7 @@ FROM hardware_prices
 GROUP BY produto_nome
 ORDER BY variacao_percentual DESC;
 
+```
 📫 Contato
   LinkedIn: yasmim-loppes
   Email: yasmim_loppes@icloud.com
